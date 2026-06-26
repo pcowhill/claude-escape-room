@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Quiet Hour — a calm, logic-driven point-and-click escape room set in a serene study. Original puzzles, vector art, no downloads." />
+  <title>The Quiet Hour — A Study Escape Room</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============================================================= -->
+  <!-- Title / start screen                                          -->
+  <!-- ============================================================= -->
+  <div id="title-screen" class="screen" aria-hidden="false">
+    <div class="title-card">
+      <div class="title-emblem" aria-hidden="true">
+        <!-- A small decorative clock emblem drawn in SVG -->
+        <svg viewBox="0 0 120 120" width="96" height="96" role="img" aria-label="Clock emblem">
+          <circle cx="60" cy="60" r="54" fill="#f3efe4" stroke="#b8a06a" stroke-width="3"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#d8cba0" stroke-width="1.5"/>
+          <g stroke="#5c6b63" stroke-width="3" stroke-linecap="round">
+            <line x1="60" y1="60" x2="60" y2="30"/>
+            <line x1="60" y1="60" x2="80" y2="68"/>
+          </g>
+          <circle cx="60" cy="60" r="4" fill="#5c6b63"/>
+          <g fill="#8a9a90">
+            <circle cx="60" cy="14" r="2"/><circle cx="106" cy="60" r="2"/>
+            <circle cx="60" cy="106" r="2"/><circle cx="14" cy="60" r="2"/>
+          </g>
+        </svg>
+      </div>
+      <h1>The Quiet Hour</h1>
+      <p class="subtitle">A calm point-and-click escape from a friend's study.</p>
+      <p class="blurb">
+        You lost the whole afternoon to a borrowed book. Now the light has gone amber,
+        the study door has latched itself shut, and it is time to let yourself out.
+        Everything you need was left in plain sight — if you take the time to look.
+      </p>
+      <div class="title-buttons">
+        <button id="btn-new-game" class="btn btn-primary">New Game</button>
+        <button id="btn-continue" class="btn" hidden>Continue</button>
+        <button id="btn-howto" class="btn btn-ghost">How to Play</button>
+      </div>
+      <p class="title-foot">No download. No timer pressure. Plays entirely in your browser.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- Main game shell                                               -->
+  <!-- ============================================================= -->
+  <div id="game" class="screen" aria-hidden="true" hidden>
+    <header id="topbar">
+      <div class="topbar-left">
+        <button id="btn-menu" class="icon-btn" aria-label="Menu">☰ <span class="btn-text">Menu</span></button>
+      </div>
+      <div class="topbar-center">
+        <span id="wall-name" class="wall-name">Front Wall</span>
+        <span id="compass" class="compass" aria-hidden="true"></span>
+      </div>
+      <div class="topbar-right">
+        <span id="timer" class="timer" aria-label="Elapsed time">00:00</span>
+        <button id="btn-hint" class="icon-btn" aria-label="Get a hint">💡 <span class="btn-text">Hint</span></button>
+      </div>
+    </header>
+
+    <main id="stage-wrap">
+      <button id="nav-left" class="nav-arrow nav-left" aria-label="Turn left">‹</button>
+
+      <div id="stage" role="group" aria-label="Room view">
+        <div id="scene"><!-- SVG room art injected here --></div>
+        <div id="hotspots"><!-- Interactive hotspot buttons injected here --></div>
+      </div>
+
+      <button id="nav-right" class="nav-arrow nav-right" aria-label="Turn right">›</button>
+    </main>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <footer id="inventory-bar">
+      <div class="inv-label">Inventory</div>
+      <ul id="inventory" class="inventory" aria-label="Inventory items"></ul>
+      <div id="holding" class="holding" aria-live="polite"></div>
+    </footer>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- Generic modal root                                            -->
+  <!-- ============================================================= -->
+  <div id="modal-root" class="modal-root" hidden aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- Win / completion screen                                       -->
+  <!-- ============================================================= -->
+  <div id="win-screen" class="screen win-screen" hidden aria-hidden="true">
+    <div class="win-card">
+      <div class="win-emblem" aria-hidden="true">🌿</div>
+      <h1>You stepped out into the evening.</h1>
+      <p id="win-time" class="win-time"></p>
+      <p class="win-blurb">The latch clicked open, the hallway light was warm, and the quiet
+        hour stayed behind you in the study, exactly as you found it.</p>
+      <div class="title-buttons">
+        <button id="btn-play-again" class="btn btn-primary">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
